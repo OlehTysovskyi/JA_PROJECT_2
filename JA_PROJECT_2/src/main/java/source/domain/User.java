@@ -2,32 +2,67 @@ package source.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private Integer userID;
+	@Column(name = "firstName")
 	private String firstName;
+	@Column(name = "lastName")
 	private String lastName;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "password")
 	private String password;
+	private String passwordConfirm;
+
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 
 	public User() {
 	}
 
-	public User(String firstName, String lastName, String email, String password, UserRole role) {
+	public User(User user) {
+		this.userID = user.userID;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.email = user.email;
+		this.password = user.password;
+		this.passwordConfirm = user.passwordConfirm;
+		this.role = user.role;
+	}
+
+	public User(String firstName, String lastName, String email, String password, String passwordConfirm,
+			UserRole role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.passwordConfirm = passwordConfirm;
 		this.role = role;
 	}
 
-	public User(Integer userID, String firstName, String lastName, String email, String password, UserRole role) {
+	public User(Integer userID, String firstName, String lastName, String email, String password,
+			String passwordConfirm, UserRole role) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.passwordConfirm = passwordConfirm;
 		this.role = role;
 	}
 
@@ -71,6 +106,14 @@ public class User {
 		this.password = password;
 	}
 
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	public UserRole getRole() {
 		return role;
 	}
@@ -81,7 +124,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, role, userID);
+		return Objects.hash(email, firstName, lastName, password, passwordConfirm, role, userID);
 	}
 
 	@Override
@@ -95,13 +138,14 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& role == other.role && Objects.equals(userID, other.userID);
+				&& Objects.equals(passwordConfirm, other.passwordConfirm) && role == other.role
+				&& Objects.equals(userID, other.userID);
 	}
 
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", role=" + role + "]";
+				+ ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + "]";
 	}
 
 }

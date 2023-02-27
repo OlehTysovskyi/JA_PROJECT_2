@@ -1,5 +1,5 @@
 package source.domain;
 
 public enum UserRole {
-	ADMINISTRATOR, GUEST, ENTRANCE
+	ROLE_ADMINISTRATOR, ROLE_USER
 }
