@@ -2,13 +2,30 @@ package source.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "specialitys")
 public class Speciality {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "spl_id")
 	private Integer specialityID;
+	@Column(name = "spl_num")
 	private Integer specialityNumber;
+	@Column(name = "spl_name")
 	private String specialityName;
+	@Column(name = "educt_id")
 	private String educationalDegree;
+	@Column(name = "contract_amount")
 	private Integer contractAmount;
+	@Column(name = "avrg_zno_mark")
 	private Integer avrgZnoMark;
 
 	public Speciality() {
