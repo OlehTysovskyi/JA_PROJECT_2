@@ -27,7 +27,6 @@ public class User {
 	private String email;
 	@Column(name = "password")
 	private String password;
-	private String passwordConfirm;
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
@@ -41,28 +40,23 @@ public class User {
 		this.lastName = user.lastName;
 		this.email = user.email;
 		this.password = user.password;
-		this.passwordConfirm = user.passwordConfirm;
 		this.role = user.role;
 	}
 
-	public User(String firstName, String lastName, String email, String password, String passwordConfirm,
-			UserRole role) {
+	public User(String firstName, String lastName, String email, String password, UserRole role) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
 		this.role = role;
 	}
 
-	public User(Integer userID, String firstName, String lastName, String email, String password,
-			String passwordConfirm, UserRole role) {
+	public User(Integer userID, String firstName, String lastName, String email, String password, UserRole role) {
 		this.userID = userID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
 		this.role = role;
 	}
 
@@ -106,14 +100,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
-
 	public UserRole getRole() {
 		return role;
 	}
@@ -124,7 +110,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, passwordConfirm, role, userID);
+		return Objects.hash(email, firstName, lastName, password, role, userID);
 	}
 
 	@Override
@@ -138,14 +124,13 @@ public class User {
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(passwordConfirm, other.passwordConfirm) && role == other.role
-				&& Objects.equals(userID, other.userID);
+				&& role == other.role && Objects.equals(userID, other.userID);
 	}
 
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", role=" + role + "]";
+				+ ", password=" + password + ", role=" + role + "]";
 	}
 
 }

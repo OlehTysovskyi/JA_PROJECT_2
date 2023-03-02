@@ -21,33 +21,33 @@ public class Speciality {
 	private Integer specialityNumber;
 	@Column(name = "spl_name")
 	private String specialityName;
-	@Column(name = "educt_id")
+	@Column(name = "educt_deegre")
 	private String educationalDegree;
 	@Column(name = "contract_amount")
 	private Integer contractAmount;
-	@Column(name = "avrg_zno_mark")
-	private Integer avrgZnoMark;
+	@Column(name = "min_av_zno")
+	private Integer minAvZno;
 
 	public Speciality() {
 	}
 
 	public Speciality(Integer specialityNumber, String specialityName, String educationalDegree, Integer contractAmount,
-			Integer avrgZnoMark) {
+			Integer minAvZno) {
 		this.specialityNumber = specialityNumber;
 		this.specialityName = specialityName;
 		this.educationalDegree = educationalDegree;
 		this.contractAmount = contractAmount;
-		this.avrgZnoMark = avrgZnoMark;
+		this.minAvZno = minAvZno;
 	}
 
 	public Speciality(Integer specialityID, Integer specialityNumber, String specialityName, String educationalDegree,
-			Integer contractAmount, Integer avrgZnoMark) {
+			Integer contractAmount, Integer minAvZno) {
 		this.specialityID = specialityID;
 		this.specialityNumber = specialityNumber;
 		this.specialityName = specialityName;
 		this.educationalDegree = educationalDegree;
 		this.contractAmount = contractAmount;
-		this.avrgZnoMark = avrgZnoMark;
+		this.minAvZno = minAvZno;
 	}
 
 	public Integer getSpecialityID() {
@@ -90,17 +90,17 @@ public class Speciality {
 		this.contractAmount = contractAmount;
 	}
 
-	public Integer getAvrgZnoMark() {
-		return avrgZnoMark;
+	public Integer getMinAvZno() {
+		return minAvZno;
 	}
 
-	public void setAvrgZnoMark(Integer avrgZnoMark) {
-		this.avrgZnoMark = avrgZnoMark;
+	public void setMinAvZno(Integer minAvZno) {
+		this.minAvZno = minAvZno;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(avrgZnoMark, contractAmount, educationalDegree, specialityID, specialityName,
+		return Objects.hash(contractAmount, educationalDegree, minAvZno, specialityID, specialityName,
 				specialityNumber);
 	}
 
@@ -113,9 +113,9 @@ public class Speciality {
 		if (getClass() != obj.getClass())
 			return false;
 		Speciality other = (Speciality) obj;
-		return Objects.equals(avrgZnoMark, other.avrgZnoMark) && Objects.equals(contractAmount, other.contractAmount)
+		return Objects.equals(contractAmount, other.contractAmount)
 				&& Objects.equals(educationalDegree, other.educationalDegree)
-				&& Objects.equals(specialityID, other.specialityID)
+				&& Objects.equals(minAvZno, other.minAvZno) && Objects.equals(specialityID, other.specialityID)
 				&& Objects.equals(specialityName, other.specialityName)
 				&& Objects.equals(specialityNumber, other.specialityNumber);
 	}
@@ -124,7 +124,7 @@ public class Speciality {
 	public String toString() {
 		return "Speciality [specialityID=" + specialityID + ", specialityNumber=" + specialityNumber
 				+ ", specialityName=" + specialityName + ", educationalDegree=" + educationalDegree
-				+ ", contractAmount=" + contractAmount + ", avrgZnoMark=" + avrgZnoMark + "]";
+				+ ", contractAmount=" + contractAmount + ", minAvZno=" + minAvZno + "]";
 	}
 
 }
