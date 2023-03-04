@@ -1,6 +1,7 @@
 package source.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class EntrantService {
 
 	public Entrant save(Entrant entrant) {
 		return entrantRepository.save(entrant);
+	}
+
+	public void updateEntrant(boolean received, Integer id) {
+		entrantRepository.updateEntrant(received, id);
 	}
 	
 	public void delete(Entrant entrant){

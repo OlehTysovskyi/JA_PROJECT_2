@@ -2,14 +2,7 @@ package source.domain;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +20,8 @@ public class User {
 	private String email;
 	@Column(name = "password")
 	private String password;
+	@Lob
+	private String image;
 
 	@Enumerated(EnumType.STRING)
 	private UserRole role;
@@ -108,23 +103,25 @@ public class User {
 		this.role = role;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, role, userID);
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& role == other.role && Objects.equals(userID, other.userID);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(userID, user.userID) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(image, user.image) && role == user.role;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(userID, firstName, lastName, email, password, image, role);
 	}
 
 	@Override

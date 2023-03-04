@@ -29,20 +29,26 @@ public class Entrant {
 	@Column(name = "av_zno_score")
 	private int avZnoScore;
 
+	@Column(name = "received", columnDefinition = "boolean default false")
+	private boolean received;
+
+
 	public Entrant() {
 	}
 
-	public Entrant(User user, Speciality speciality, int avZnoScore) {
+	public Entrant(User user, Speciality speciality, int avZnoScore, boolean received) {
 		this.user = user;
 		this.speciality = speciality;
 		this.avZnoScore = avZnoScore;
+		this.received = received;
 	}
 
-	public Entrant(Integer id, User user, Speciality speciality, int avZnoScore) {
+	public Entrant(Integer id, User user, Speciality speciality, int avZnoScore, boolean received) {
 		this.id = id;
 		this.user = user;
 		this.speciality = speciality;
 		this.avZnoScore = avZnoScore;
+		this.received = received;
 	}
 
 	public Integer getId() {
@@ -77,28 +83,35 @@ public class Entrant {
 		this.avZnoScore = avZnoScore;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(avZnoScore, id, speciality, user);
+	public boolean isReceived() {
+		return received;
+	}
+
+	public void setReceived(boolean received) {
+		this.received = received;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Entrant other = (Entrant) obj;
-		return avZnoScore == other.avZnoScore && Objects.equals(id, other.id)
-				&& Objects.equals(speciality, other.speciality) && Objects.equals(user, other.user);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Entrant entrant = (Entrant) o;
+		return avZnoScore == entrant.avZnoScore && received == entrant.received && Objects.equals(id, entrant.id) && Objects.equals(user, entrant.user) && Objects.equals(speciality, entrant.speciality);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, user, speciality, avZnoScore, received);
 	}
 
 	@Override
 	public String toString() {
-		return "EntrantSpeciality [id=" + id + ", user=" + user + ", speciality=" + speciality + ", avZnoScore="
-				+ avZnoScore + "]";
+		return "Entrant{" +
+				"id=" + id +
+				", user=" + user +
+				", speciality=" + speciality +
+				", avZnoScore=" + avZnoScore +
+				", received=" + received +
+				'}';
 	}
-
 }

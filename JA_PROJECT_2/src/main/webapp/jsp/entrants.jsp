@@ -29,7 +29,9 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a>
 			<a href="/entrant-registration" class="w3-bar-item w3-button">Specialities</a>
+			<a href="/entrant-enrolling" class="w3-bar-item w3-button">Enroll Entrants</a>
 			<a href="/entrants" class="w3-bar-item w3-button">Entrants</a>
+			<a href="/received-entrants" class="w3-bar-item w3-button">Enrollment List</a>
 		</div>
 
 		<!-- Page Content -->

@@ -14,7 +14,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     <title>Specialities - page</title>
     <!-- CSS only -->
 <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">--%>
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div class="container">
-	
+
 	    <!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
 			<h3 class="w3-bar-item">Menu</h3>
@@ -52,33 +52,40 @@
 	                        onclick="document.forms['logoutForm'].submit()">Logout</a>
 	                </h2>
 	            </c:if>
-	
-	            <form:form method="POST" action="${contextPath}/entrantRegistration" modelAttribute="entrant" enctype="multipart/form-data">
-	                <table>
-	                	<tr>
-			              	<td>
-			              		<form:label path="speciality"></form:label>
-			              		<form:select path="speciality" >
-			                	<c:if test="${not empty specialities}">
-	                				 <c:forEach items="${specialities}" var="currentSpeciality">
-			                         	<form:option value="${currentSpeciality.specialityID}">
-			                            	${currentSpeciality.specialityNumber} | ${currentSpeciality.specialityName}
-			              				</form:option>
-			            			</c:forEach>
-								</c:if>
-			     				</form:select>
-			     			</td>
-						</tr>
+
+				<div class="w3-container">
+					<table>
+						<thead>
 						<tr>
-	                        <td><form:input path="avZnoScore" placeholder="Середній бал ЗНО"/></td>
-	                    </tr>
-	                    <tr>
-	                        <td><input type="submit" value="Submit" /></td>
-	                    </tr>
-	                </table>
-	                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	            </form:form>
-	
+							<th>Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Av ZNO</th>
+							<th>Speciality</th>
+							<th>Enroll Entrant</th>
+						</tr>
+						</thead>
+
+						<tbody>
+						<c:forEach items="${entrants}" var="entrant">
+							<form:form method="POST" action="${contextPath}/entrantEnrolling" modelAttribute="entrant" enctype="multipart/form-data">
+								<input type="hidden" name="id" value="${entrant.id}"/>
+								<c:if test="${entrant.received == false}">
+								<tr>
+									<td>${entrant.id}</td>
+									<td>${entrant.user.firstName}</td>
+									<td>${entrant.user.lastName}</td>
+									<td>${entrant.avZnoScore}</td>
+									<td>${entrant.speciality.specialityNumber} | ${entrant.speciality.specialityName}</td>
+									<td><input type="submit" value="Submit" /></td>
+								</tr>
+								</c:if>
+							</form:form>
+
+						</c:forEach>
+						</tbody>
+					</table>
+				</div>
 	        </div>
 	    </div>
 	</div>

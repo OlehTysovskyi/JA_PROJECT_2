@@ -25,12 +25,14 @@
 	
 	
 	    <!-- Sidebar -->
-	    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-	        <h3 class="w3-bar-item">Menu</h3>
-	        <a href="/home" class="w3-bar-item w3-button">Home</a>
-	        <a href="/entrant-registration" class="w3-bar-item w3-button">Specialities</a>
-	        <a href="/entrants" class="w3-bar-item w3-button">Entrants</a>
-	    </div>
+		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
+			<h3 class="w3-bar-item">Menu</h3>
+			<a href="/home" class="w3-bar-item w3-button">Home</a>
+			<a href="/entrant-registration" class="w3-bar-item w3-button">Specialities</a>
+			<a href="/entrant-enrolling" class="w3-bar-item w3-button">Enroll Entrants</a>
+			<a href="/entrants" class="w3-bar-item w3-button">Entrants</a>
+			<a href="/received-entrants" class="w3-bar-item w3-button">Enrollment List</a>
+		</div>
 	
 	
 	    <!-- Page Content -->
@@ -58,7 +60,7 @@
 	                <div class="container">
 	                    <div class="row justify-content-center">
 	                        <div class="col-md-6 text-center mb-5">
-	                            <h2 class="heading-section">Table #07</h2>
+	                            <h2 class="heading-section">All Specialities</h2>
 	                        </div>
 	                    </div>
 	                    <div class="row">

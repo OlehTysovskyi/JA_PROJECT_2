@@ -3,16 +3,18 @@ package source.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import source.domain.Entrant;
-import source.domain.User;
 import source.service.SpecialityService;
+import source.service.UserDtoHelper;
 import source.service.UserService;
+
+import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -24,20 +26,16 @@ public class UserController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
-		model.addAttribute("userForm", new User());
-
 		return "registration";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+	public ModelAndView registration(@RequestParam MultipartFile image, @RequestParam String email, @RequestParam String firstName,
+									 @RequestParam String lastName, @RequestParam String password) throws IOException {
 
-		if (bindingResult.hasErrors()) {
-			return "registration";
-		}
-		userService.save(userForm);
+		userService.save(UserDtoHelper.createUser(image,email,firstName,lastName,password));
 
-		return "redirect:/home";
+		return new ModelAndView("redirect:/home");
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
