@@ -2,6 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
@@ -29,7 +30,9 @@
 			<h3 class="w3-bar-item">Menu</h3>
 			<a href="/home" class="w3-bar-item w3-button">Home</a>
 			<a href="/entrant-registration" class="w3-bar-item w3-button">Specialities</a>
-			<a href="/entrant-enrolling" class="w3-bar-item w3-button">Enroll Entrants</a>
+			<security:authorize access="hasRole('ROLE_ADMINISTRATOR')">
+				<a href="/entrant-enrolling" class="w3-bar-item w3-button">Enroll Entrants</a>
+			</security:authorize>
 			<a href="/entrants" class="w3-bar-item w3-button">Entrants</a>
 			<a href="/received-entrants" class="w3-bar-item w3-button">Enrollment List</a>
 		</div>
@@ -73,7 +76,9 @@
 	                        <td><form:input path="avZnoScore" placeholder="Середній бал ЗНО"/></td>
 	                    </tr>
 	                    <tr>
-	                        <td><input type="submit" value="Submit" /></td>
+							<security:authorize access="hasRole('ROLE_USER')">
+								<td><input type="submit" value="Submit" /></td>
+							</security:authorize>
 	                    </tr>
 	                </table>
 	                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
