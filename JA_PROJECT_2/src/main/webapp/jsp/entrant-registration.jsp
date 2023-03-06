@@ -27,14 +27,14 @@
 	
 	    <!-- Sidebar -->
 		<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 10%">
-			<h3 class="w3-bar-item">Menu</h3>
-			<a href="/home" class="w3-bar-item w3-button">Home</a>
-			<a href="/entrant-registration" class="w3-bar-item w3-button">Specialities</a>
+			<h3 class="w3-bar-item"><spring:message code="home.menu"></spring:message></h3>
+			<a href="/home" class="w3-bar-item w3-button"><spring:message code="home.home"></spring:message></a>
+			<a href="/entrant-registration" class="w3-bar-item w3-button"><spring:message code="home.entrantRegistration"></spring:message></a>
 			<security:authorize access="hasRole('ROLE_ADMINISTRATOR')">
-				<a href="/entrant-enrolling" class="w3-bar-item w3-button">Enroll Entrants</a>
+				<a href="/entrant-enrolling" class="w3-bar-item w3-button"><spring:message code="home.enrollEntrant"></spring:message></a>
 			</security:authorize>
-			<a href="/entrants" class="w3-bar-item w3-button">Entrants</a>
-			<a href="/received-entrants" class="w3-bar-item w3-button">Enrollment List</a>
+			<a href="/entrants" class="w3-bar-item w3-button"><spring:message code="home.entrants"></spring:message></a>
+			<a href="/received-entrants" class="w3-bar-item w3-button"><spring:message code="home.receivedEntrants"></spring:message></a>
 		</div>
 
 	    <!-- Page Content -->
@@ -45,17 +45,6 @@
 
 	        <div class="w3-container">
 
-	            <c:if test="${pageContext.request.userPrincipal.name != null}">
-	                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-	                    <input type="hidden" name="${_csrf.parameterName}"
-	                           value="${_csrf.token}" />
-	                </form>
-	                <h2>
-	                    Welcome ${pageContext.request.userPrincipal.name} | <a
-	                        onclick="document.forms['logoutForm'].submit()">Logout</a>
-	                </h2>
-	            </c:if>
-	
 	            <form:form method="POST" action="${contextPath}/entrantRegistration" modelAttribute="entrant" enctype="multipart/form-data">
 	                <table>
 	                	<tr>
